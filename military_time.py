@@ -28,7 +28,7 @@ def num_to_word(num):
   }
 
   if num in num_words:
-    return "zero " + num_words[num] if num <= 9 else num_words[num]
+    return "zero " + num_words[num] if num <= 9 and num != 0 else num_words[num]
   else:
     tens = num // 10 * 10
     ones = num % 10
@@ -56,6 +56,9 @@ def convert(time):
 
 assert convert("4:00PM") == "sixteen hundred hours"
 assert convert("11:00AM") == "eleven hundred hours"
+assert convert("12:00AM") == "zero hundred hours"
+assert convert("12:20AM") == "zero twenty"
+assert convert("12:00PM") == "twelve hundred hours"
 assert convert("11:23AM") == "eleven twenty three"
 assert convert("6:45PM") == "eighteen forty five"
 assert convert("7:45AM") == "zero seven forty five"
